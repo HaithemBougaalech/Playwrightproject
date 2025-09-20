@@ -1,0 +1,146 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "check-that-the-products-are-added-to-the-cart;add-products-to-cart",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "Add products to cart",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 8573778000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I am a user on login page",
+            "match": {
+              "location": "tests\\steps\\LoginSteps.ts:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1315663499
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "Login",
+                      "standard_user"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "Password",
+                      "secret_sauce"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I fill all informations in the form",
+            "match": {
+              "location": "tests\\steps\\LoginSteps.ts:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 272238399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I submit the credtial",
+            "match": {
+              "location": "tests\\steps\\LoginSteps.ts:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1690468800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "I click add to cart in the first product",
+            "match": {
+              "location": "tests\\steps\\UserLoginAndCheckout.ts:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 137547899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "I click add to cart in the second product",
+            "match": {
+              "location": "tests\\steps\\UserLoginAndCheckout.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 105660899
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1069090100
+            },
+            "embeddings": [
+              {
+                "data": "QnJvd3NlcjpjaHJvbWl1bSBWZXJzaW9uOiAxNDAuMC43MzM5LjE2",
+                "mime_type": "text/plain"
+              },
+              {
+                "data": "U3RhdHVzOiBQQVNTRUQuIER1cmF0aW9uOjhz",
+                "mime_type": "text/plain"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          {
+            "name": "@buyingProducts",
+            "line": 1
+          },
+          {
+            "name": "@AddProducts",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "check-that-the-products-are-added-to-the-cart",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Check that the products are added to the cart",
+    "tags": [
+      {
+        "name": "@buyingProducts",
+        "line": 1
+      }
+    ],
+    "uri": "tests\\feature\\product.feature"
+  }
+]
