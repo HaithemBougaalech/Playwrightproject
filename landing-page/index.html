@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Senior Software Engineer — Portfolio</title>
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #21262d;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --accent3: #d2a8ff;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --white: #f0f6fc;
+      --radius: 10px;
+      --transition: 0.25s ease;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── Nav ──────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); text-decoration: none; }
+
+    /* ─── Hero ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(88, 166, 255, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 85% 80%, rgba(63, 185, 80, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 30px rgba(88, 166, 255, 0.25);
+    }
+    .hero-role {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(88,166,255,0.15), rgba(210,168,255,0.15));
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 20px;
+      padding: 0.3rem 1rem;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    #hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      line-height: 1.15;
+    }
+    #hero h1 span { color: var(--accent); }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0d1117;
+    }
+    .btn-primary:hover { background: #79c0ff; text-decoration: none; color: #0d1117; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .stat { text-align: center; }
+    .stat-value { font-size: 2rem; font-weight: 700; color: var(--white); }
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ─── Section Shared ────────────────────────────────────────── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .section-header p { color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ─── About ────────────────────────────────────────────────── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+    .highlight-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color var(--transition);
+    }
+    .highlight-card:hover { border-color: var(--accent); }
+    .highlight-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .highlight-card h4 { color: var(--white); font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .highlight-card p { color: var(--muted); font-size: 0.85rem; margin: 0; }
+
+    /* ─── Skills ────────────────────────────────────────────────── */
+    #skills { background: var(--bg); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-category {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .skill-category:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .skill-category-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .skill-category-title span { font-size: 1.3rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .tag-green  { background: rgba(63,185,80,0.12);  color: var(--accent2); border: 1px solid rgba(63,185,80,0.25); }
+    .tag-blue   { background: rgba(88,166,255,0.12); color: var(--accent);  border: 1px solid rgba(88,166,255,0.25); }
+    .tag-purple { background: rgba(210,168,255,0.12); color: var(--accent3); border: 1px solid rgba(210,168,255,0.25); }
+    .tag-orange { background: rgba(255,166,77,0.12); color: #ffa64d;        border: 1px solid rgba(255,166,77,0.25); }
+    .tag-red    { background: rgba(255,99,71,0.12);  color: #ff7c5c;        border: 1px solid rgba(255,99,71,0.25); }
+    .skill-bar-container { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .skill-bar-row { display: flex; flex-direction: column; gap: 0.3rem; }
+    .skill-bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--muted); }
+    .skill-bar-track {
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+      transition: width 1s ease;
+    }
+
+    /* ─── Projects ──────────────────────────────────────────────── */
+    #projects { background: var(--surface); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+    .project-icon { font-size: 2rem; }
+    .project-links { display: flex; gap: 0.5rem; }
+    .project-link {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: all var(--transition);
+    }
+    .project-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+    .project-card h3 { color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
+    .project-card p { color: var(--muted); font-size: 0.88rem; flex: 1; margin-bottom: 1rem; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    /* ─── Experience ────────────────────────────────────────────── */
+    #experience { background: var(--bg); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -2.45rem;
+      top: 0.4rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .timeline-date {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(88,166,255,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .timeline-item h3 { color: var(--white); font-size: 1rem; margin-bottom: 0.2rem; }
+    .timeline-item h4 { color: var(--muted); font-size: 0.9rem; font-weight: 400; margin-bottom: 0.6rem; }
+    .timeline-item ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+    .timeline-item ul li {
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .timeline-item ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    /* ─── Contact ───────────────────────────────────────────────── */
+    #contact { background: var(--surface); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-info p { color: var(--muted); margin-bottom: 1.5rem; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item-text { font-size: 0.9rem; color: var(--text); }
+    .contact-item-label { font-size: 0.75rem; color: var(--muted); display: block; margin-bottom: 0.1rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--muted); }
+    .form-group input,
+    .form-group textarea {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.7rem 1rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition);
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer span { color: var(--accent); }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navigation ──────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-brand"><span>&lt;</span>Alex Dev<span>/&gt;</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary" style="padding:0.45rem 1rem;font-size:0.85rem;">Hire Me</a>
+  </nav>
+
+  <!-- ─── Hero ────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="avatar">👨‍💻</div>
+    <div class="hero-role">Senior Software Engineer</div>
+    <h1>Alex <span>Bougaalech</span></h1>
+    <p class="hero-subtitle">
+      Full-stack engineer specializing in AI / Machine Learning back-ends,
+      scalable Node.js APIs and modern React front-ends.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-value">8+</div><div class="stat-label">Years Exp.</div></div>
+      <div class="stat"><div class="stat-value">40+</div><div class="stat-label">Projects</div></div>
+      <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat"><div class="stat-value">3</div><div class="stat-label">Open-Source Libs</div></div>
+    </div>
+  </section>
+
+  <!-- ─── About ───────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">About Me</span>
+        <h2>Turning Ideas Into Production Systems</h2>
+        <p>Passionate about building robust, data-driven applications from database to deployment.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a Senior Software Engineer with 8+ years of experience building
+            high-performance applications across the full stack. My core expertise lies
+            in designing scalable REST and GraphQL APIs with <strong>Node.js / Express</strong>,
+            engineering AI & ML-powered services in <strong>Python</strong>, and crafting
+            responsive UIs in <strong>React.js</strong>.
+          </p>
+          <p>
+            I architect data layers using <strong>MongoDB</strong> for flexible document
+            storage and integrate cutting-edge machine learning pipelines — from model
+            training with TensorFlow &amp; PyTorch to serving predictions at scale with
+            FastAPI microservices.
+          </p>
+          <p>
+            Outside work I contribute to open-source tooling, mentor junior engineers,
+            and write about engineering best-practices on my blog.
+          </p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <div class="highlight-icon">🧠</div>
+            <div>
+              <h4>AI / Machine Learning</h4>
+              <p>Designing and deploying ML models — NLP, computer vision, recommendation engines.</p>
+            </div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">⚙️</div>
+            <div>
+              <h4>Backend Engineering</h4>
+              <p>Scalable REST & GraphQL APIs using Node.js, Express, MongoDB, and microservices.</p>
+            </div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">🎨</div>
+            <div>
+              <h4>Frontend Development</h4>
+              <p>Responsive single-page applications built with React.js, TypeScript, and modern CSS.</p>
+            </div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">🚀</div>
+            <div>
+              <h4>DevOps & Cloud</h4>
+              <p>CI/CD pipelines, Docker containers, Kubernetes orchestration, AWS &amp; GCP deployments.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Skills ──────────────────────────────────────────────── -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Technical Skills</span>
+        <h2>My Technology Stack</h2>
+        <p>A diverse toolkit covering the full engineering spectrum — from ML research to pixel-perfect UIs.</p>
+      </div>
+      <div class="skills-grid">
+
+        <!-- Backend -->
+        <div class="skill-category">
+          <div class="skill-category-title"><span>⚙️</span> Backend Development</div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-green">Node.js</span>
+            <span class="skill-tag tag-green">Express.js</span>
+            <span class="skill-tag tag-blue">REST API</span>
+            <span class="skill-tag tag-blue">GraphQL</span>
+            <span class="skill-tag tag-orange">FastAPI</span>
+            <span class="skill-tag tag-orange">Flask</span>
+            <span class="skill-tag tag-purple">Microservices</span>
+            <span class="skill-tag tag-purple">WebSockets</span>
+          </div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>Node.js / Express</span><span>95%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div>
+            </div>
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>Python / FastAPI</span><span>90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI / ML -->
+        <div class="skill-category">
+          <div class="skill-category-title"><span>🧠</span> AI / Machine Learning</div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-orange">Python</span>
+            <span class="skill-tag tag-orange">TensorFlow</span>
+            <span class="skill-tag tag-orange">PyTorch</span>
+            <span class="skill-tag tag-orange">scikit-learn</span>
+            <span class="skill-tag tag-blue">Pandas</span>
+            <span class="skill-tag tag-blue">NumPy</span>
+            <span class="skill-tag tag-green">Hugging Face</span>
+            <span class="skill-tag tag-green">LangChain</span>
+            <span class="skill-tag tag-purple">OpenAI API</span>
+          </div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>Deep Learning (TF / PyTorch)</span><span>88%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%"></div></div>
+            </div>
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>NLP / LLM Integration</span><span>85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div class="skill-category">
+          <div class="skill-category-title"><span>🗄️</span> Databases</div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-green">MongoDB</span>
+            <span class="skill-tag tag-green">Mongoose</span>
+            <span class="skill-tag tag-blue">PostgreSQL</span>
+            <span class="skill-tag tag-blue">Redis</span>
+            <span class="skill-tag tag-orange">Elasticsearch</span>
+            <span class="skill-tag tag-purple">Firebase</span>
+            <span class="skill-tag tag-purple">Atlas Vector Search</span>
+          </div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>MongoDB / NoSQL</span><span>92%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%"></div></div>
+            </div>
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>PostgreSQL / SQL</span><span>80%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category">
+          <div class="skill-category-title"><span>🎨</span> Frontend Development</div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-blue">React.js</span>
+            <span class="skill-tag tag-blue">TypeScript</span>
+            <span class="skill-tag tag-blue">Next.js</span>
+            <span class="skill-tag tag-purple">Redux</span>
+            <span class="skill-tag tag-purple">Tailwind CSS</span>
+            <span class="skill-tag tag-green">HTML5 / CSS3</span>
+            <span class="skill-tag tag-orange">Playwright</span>
+          </div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>React.js / Next.js</span><span>87%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:87%"></div></div>
+            </div>
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>TypeScript</span><span>83%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:83%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DevOps -->
+        <div class="skill-category">
+          <div class="skill-category-title"><span>🚀</span> DevOps &amp; Cloud</div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-orange">Docker</span>
+            <span class="skill-tag tag-orange">Kubernetes</span>
+            <span class="skill-tag tag-blue">AWS</span>
+            <span class="skill-tag tag-blue">GCP</span>
+            <span class="skill-tag tag-green">GitHub Actions</span>
+            <span class="skill-tag tag-green">CI/CD</span>
+            <span class="skill-tag tag-purple">Nginx</span>
+          </div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>Docker / Kubernetes</span><span>82%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
+            </div>
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>AWS / GCP</span><span>78%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:78%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testing -->
+        <div class="skill-category">
+          <div class="skill-category-title"><span>🧪</span> Testing &amp; Quality</div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-green">Playwright</span>
+            <span class="skill-tag tag-green">Jest</span>
+            <span class="skill-tag tag-blue">Cucumber / BDD</span>
+            <span class="skill-tag tag-blue">Supertest</span>
+            <span class="skill-tag tag-purple">pytest</span>
+            <span class="skill-tag tag-orange">ESLint</span>
+          </div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>E2E Testing (Playwright)</span><span>90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+            </div>
+            <div class="skill-bar-row">
+              <div class="skill-bar-label"><span>Unit / Integration (Jest)</span><span>85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Projects ────────────────────────────────────────────── -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Portfolio</span>
+        <h2>Featured Projects</h2>
+        <p>A selection of production-grade applications built across the full stack.</p>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🤖</div>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live demo">↗</a>
+            </div>
+          </div>
+          <h3>AI Chat Platform</h3>
+          <p>Real-time conversational AI platform powered by OpenAI GPT-4 and LangChain. Includes user authentication, chat history stored in MongoDB, and a React dashboard.</p>
+          <div class="project-stack">
+            <span class="skill-tag tag-orange">Python</span>
+            <span class="skill-tag tag-green">Node.js</span>
+            <span class="skill-tag tag-blue">React.js</span>
+            <span class="skill-tag tag-green">MongoDB</span>
+            <span class="skill-tag tag-purple">LangChain</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">📊</div>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live demo">↗</a>
+            </div>
+          </div>
+          <h3>ML Analytics Dashboard</h3>
+          <p>Full-stack analytics tool that ingests raw data, runs predictive ML models (scikit-learn / PyTorch) via a FastAPI service, and visualizes insights in a React.js SPA.</p>
+          <div class="project-stack">
+            <span class="skill-tag tag-orange">PyTorch</span>
+            <span class="skill-tag tag-orange">FastAPI</span>
+            <span class="skill-tag tag-blue">React.js</span>
+            <span class="skill-tag tag-green">MongoDB</span>
+            <span class="skill-tag tag-blue">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🛒</div>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live demo">↗</a>
+            </div>
+          </div>
+          <h3>E-Commerce API Platform</h3>
+          <p>Microservices e-commerce backend — products, orders, payments, and inventory — built with Express.js, MongoDB Atlas, Redis caching, and Docker / Kubernetes.</p>
+          <div class="project-stack">
+            <span class="skill-tag tag-green">Express.js</span>
+            <span class="skill-tag tag-green">MongoDB</span>
+            <span class="skill-tag tag-blue">Redis</span>
+            <span class="skill-tag tag-orange">Docker</span>
+            <span class="skill-tag tag-purple">Stripe API</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🔍</div>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live demo">↗</a>
+            </div>
+          </div>
+          <h3>NLP Document Search Engine</h3>
+          <p>Semantic search engine using sentence-transformers and MongoDB Atlas Vector Search. Surfaces relevant documents based on meaning rather than exact keywords.</p>
+          <div class="project-stack">
+            <span class="skill-tag tag-orange">Python</span>
+            <span class="skill-tag tag-green">Hugging Face</span>
+            <span class="skill-tag tag-green">MongoDB</span>
+            <span class="skill-tag tag-blue">React.js</span>
+            <span class="skill-tag tag-orange">FastAPI</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">📱</div>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live demo">↗</a>
+            </div>
+          </div>
+          <h3>Real-Time Collaboration App</h3>
+          <p>Collaborative workspace (like Notion) with WebSocket-based live editing, role-based access control, and full-text search backed by Elasticsearch and MongoDB.</p>
+          <div class="project-stack">
+            <span class="skill-tag tag-green">Node.js</span>
+            <span class="skill-tag tag-blue">WebSockets</span>
+            <span class="skill-tag tag-blue">React.js</span>
+            <span class="skill-tag tag-green">MongoDB</span>
+            <span class="skill-tag tag-orange">Elasticsearch</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🧪</div>
+            <div class="project-links">
+              <a href="#" class="project-link" title="GitHub">⌥</a>
+              <a href="#" class="project-link" title="Live demo">↗</a>
+            </div>
+          </div>
+          <h3>Automated Testing Framework</h3>
+          <p>Enterprise-grade BDD test framework combining Playwright + Cucumber with custom HTML reporting, CI/CD integration, and parallel browser execution.</p>
+          <div class="project-stack">
+            <span class="skill-tag tag-green">Playwright</span>
+            <span class="skill-tag tag-blue">Cucumber</span>
+            <span class="skill-tag tag-purple">TypeScript</span>
+            <span class="skill-tag tag-orange">GitHub Actions</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Experience ──────────────────────────────────────────── -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Career</span>
+        <h2>Work Experience</h2>
+        <p>8+ years designing and shipping high-impact software across multiple industries.</p>
+      </div>
+      <div style="max-width:700px;margin:0 auto;">
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2022 – Present</span>
+            </div>
+            <h3>Senior Software Engineer</h3>
+            <h4>TechCorp AI · Paris, France</h4>
+            <ul>
+              <li>Led the design of an LLM-powered customer support system, reducing ticket resolution time by 40%.</li>
+              <li>Architected a Node.js / Express microservices platform handling 2M+ req/day on MongoDB Atlas.</li>
+              <li>Built React.js dashboards consumed by 10k+ daily active users.</li>
+              <li>Mentored a team of 5 engineers and defined engineering best-practices.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2019 – 2022</span>
+            </div>
+            <h3>Full-Stack Engineer</h3>
+            <h4>DataVision Labs · Remote</h4>
+            <ul>
+              <li>Developed Python ML pipelines (scikit-learn, TensorFlow) for fraud detection — 97% accuracy.</li>
+              <li>Exposed ML models via FastAPI microservices integrated with the Node.js API gateway.</li>
+              <li>Maintained and extended a React.js SPA for internal analytics tooling.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-meta">
+              <span class="timeline-date">2016 – 2019</span>
+            </div>
+            <h3>Backend Developer</h3>
+            <h4>Startupify · Tunis, Tunisia</h4>
+            <ul>
+              <li>Built RESTful APIs with Express.js and MongoDB for three SaaS products.</li>
+              <li>Implemented JWT authentication, rate-limiting, and API versioning from the ground up.</li>
+              <li>Reduced average API response time by 60% through query optimisation and Redis caching.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact ──────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Contact</span>
+        <h2>Let's Work Together</h2>
+        <p>Available for full-time roles, consulting contracts, and interesting open-source collaborations.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>
+            I'm currently open to new opportunities. Whether you have a project in mind,
+            want to discuss a technical challenge, or just want to say hi — feel free to reach out.
+          </p>
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div>
+              <span class="contact-item-label">Email</span>
+              <div class="contact-item-text">alex.bougaalech@example.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">💼</div>
+            <div>
+              <span class="contact-item-label">LinkedIn</span>
+              <div class="contact-item-text">linkedin.com/in/alex-dev</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🐙</div>
+            <div>
+              <span class="contact-item-label">GitHub</span>
+              <div class="contact-item-text">github.com/HaithemBougaalech</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <span class="contact-item-label">Location</span>
+              <div class="contact-item-text">Paris, France · Open to Remote</div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input id="subject" type="text" placeholder="Project idea / Job opportunity / …" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Send Message ✉️</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ──────────────────────────────────────────────── -->
+  <footer>
+    <p>© 2024 <span>Alex Bougaalech</span> · Built with ❤️ and lots of ☕ · Node.js · React · Python · MongoDB</p>
+  </footer>
+
+  <script>
+    // ── Animate skill bars on scroll ──────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.style.width; // trigger reflow
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.skill-category').forEach(el => observer.observe(el));
+
+    // ── Contact form (demo) ───────────────────────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.textContent = 'Message Sent! ✅';
+      btn.disabled = true;
+      btn.style.background = 'var(--accent2)';
+      setTimeout(() => {
+        btn.textContent = 'Send Message ✉️';
+        btn.disabled = false;
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    }
+
+    // ── Smooth active nav link highlighting ──────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 80) current = section.id;
+      });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + current
+          ? 'var(--white)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
